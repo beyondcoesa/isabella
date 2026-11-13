@@ -1,0 +1,238 @@
+/* ==========================================================
+   tool-isabella — stile
+   Token, font, barra a pillola e pill presi da Beyond (assets/style.css
+   del repository beyond), così lo strumento sembra parte della stessa app.
+   Tema scuro di default, tema chiaro disponibile.
+   ========================================================== */
+
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/archivo-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/archivo-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/archivo-latin-700-normal.woff2") format("woff2"); }
+
+/* ---------- token: tema chiaro (identici a Beyond) ---------- */
+:root{
+  --coesa:#FFC72C;
+  --ground:#F4F4F1; --surface:#FFFFFF; --surface-2:#F9F9F7; --surface-3:#ECECE7;
+  --line:#E3E3DD; --line-strong:#CBCBC3;
+  --ink:#111316; --ink-2:#4D5159; --ink-3:#7C8189;
+  --accent:#FFC72C; --accent-deep:#F2B400; --on-accent:#16130A;
+  --accent-ink:#935700; --accent-soft:#FFF2CC;
+  --pos:#0B7A58; --neg:#C0442A; --amber:#A86A00; --info:#2F6FD6;
+  --pos-soft:#E3F1EB; --neg-soft:#F8E7E2; --amber-soft:#F8EEDA; --info-soft:#E4ECFA; --neutral-soft:#EDEDE8;
+  --shadow:0 1px 2px rgba(17,19,22,.05), 0 8px 24px -16px rgba(17,19,22,.28);
+  --r:10px; --r-lg:16px;
+  --wrap:1200px;
+}
+/* ---------- token: tema scuro (default) ---------- */
+:root[data-theme="dark"]{
+  --ground:#08090A; --surface:#121418; --surface-2:#171A1E; --surface-3:#1F2328;
+  --line:#23272D; --line-strong:#343941;
+  --ink:#F3F4F5; --ink-2:#ADB2B9; --ink-3:#7E848C;
+  --accent:#FFC72C; --accent-deep:#FFD65E; --on-accent:#16130A;
+  --accent-ink:#FFC72C; --accent-soft:#2A2310;
+  --pos:#45BBA0; --neg:#ED7C61; --amber:#E2AC3A; --info:#6FA3FF;
+  --pos-soft:#11302A; --neg-soft:#3A211B; --amber-soft:#31280F; --info-soft:#162741; --neutral-soft:#1F2226;
+  --shadow:0 1px 2px rgba(0,0,0,.45), 0 8px 24px -16px rgba(0,0,0,.85);
+  color-scheme:dark;
+}
+
+/* ---------- base ---------- */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:Archivo,"Segoe UI",system-ui,sans-serif; font-size:15px; line-height:1.5;
+  -webkit-font-smoothing:antialiased; min-height:100vh; display:flex; flex-direction:column;
+}
+main{flex:1;padding-top:100px}
+h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.015em;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+img,svg{display:block}
+.num{font-variant-numeric:tabular-nums}
+[hidden]{display:none !important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px;width:100%}
+@media(max-width:700px){.wrap{padding:0 16px}}
+.muto{color:var(--ink-3)}
+.piccolo{font-size:12.5px}
+
+/* ---------- barra a pillola (da Beyond), sempre scura ---------- */
+header.top{position:fixed;top:14px;left:0;right:0;z-index:60;pointer-events:none}
+.top-in{
+  pointer-events:auto;max-width:var(--wrap);width:calc(100% - 32px);margin:0 auto;min-height:58px;
+  display:flex;align-items:center;gap:8px 16px;padding:0 10px 0 18px;border-radius:16px;
+  background:rgba(22,24,28,.86);border:1px solid rgba(255,255,255,.08);color:#F3F4F5;
+  backdrop-filter:saturate(1.5) blur(16px);-webkit-backdrop-filter:saturate(1.5) blur(16px);
+  box-shadow:0 10px 30px -12px rgba(0,0,0,.6);
+}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;flex:none;color:#F3F4F5}
+.brand img{height:26px;width:auto}
+.brand .sep{width:1px;height:22px;background:rgba(255,255,255,.22)}
+.brand .prod{font-size:16px;font-weight:700;letter-spacing:-.01em}
+.top-actions{display:flex;align-items:center;gap:6px;margin-left:auto;min-width:0}
+.chi{font-size:13px;color:#B9BDC3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px;margin-right:4px}
+.btn-top{height:38px;padding:0 13px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:transparent;color:#B9BDC3;cursor:pointer;font-size:14px;font-weight:500}
+.btn-top:hover{background:rgba(255,255,255,.08);color:#fff}
+.theme-btn{width:38px;height:38px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:transparent;display:grid;place-items:center;cursor:pointer;color:#B9BDC3}
+.theme-btn:hover{background:rgba(255,255,255,.08);color:#fff}
+.theme-btn svg{width:18px;height:18px}
+.theme-btn .sun{display:none}
+:root[data-theme="dark"] .theme-btn .sun{display:block}
+:root[data-theme="dark"] .theme-btn .moon{display:none}
+@media(max-width:600px){
+  .top-in{padding:0 8px 0 14px}
+  .brand img{height:22px}
+  .chi{display:none}
+}
+
+/* ---------- bottoni, pill, etichette (da Beyond) ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 15px;border-radius:10px;
+  border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);font-size:14px;font-weight:500;
+  cursor:pointer;text-decoration:none;transition:background .12s,border-color .12s,box-shadow .12s;
+}
+.btn:hover{background:var(--surface-3)}
+.btn svg{width:16px;height:16px;flex:none}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:700}
+.btn-primary:hover{background:var(--accent-deep);border-color:var(--accent-deep)}
+.btn-ghost{background:transparent;border-color:transparent;color:var(--ink-2)}
+.btn-ghost:hover{background:var(--surface-3);color:var(--ink)}
+.btn-lg{padding:13px 22px;font-size:15px;border-radius:12px}
+.btn-sm{padding:6px 11px;font-size:13px;border-radius:8px}
+.btn[disabled]{opacity:.5;cursor:progress}
+
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink)}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent);border-radius:2px}
+
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;line-height:1.2;padding:3px 9px;border-radius:999px;white-space:nowrap;text-transform:none}
+.pill .dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+.pill.pos{background:var(--pos-soft);color:var(--pos)}
+.pill.neg{background:var(--neg-soft);color:var(--neg)}
+.pill.amber{background:var(--amber-soft);color:var(--amber)}
+.pill.info{background:var(--info-soft);color:var(--info)}
+.pill.ghost{background:var(--neutral-soft);color:var(--ink-2)}
+
+/* ---------- accesso ---------- */
+.accesso{display:grid;place-items:center;min-height:calc(100vh - 220px)}
+.scheda-accesso{
+  width:100%;max-width:440px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:32px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:14px;
+}
+.scheda-accesso h1{font-size:26px}
+.scheda-accesso .sotto{color:var(--ink-2)}
+.scheda-accesso form{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.scheda-accesso label{font-size:13px;font-weight:500;color:var(--ink-2)}
+.scheda-accesso input{
+  height:48px;padding:0 14px;border-radius:12px;border:1px solid var(--line-strong);background:var(--surface-2);font-size:16px;
+}
+#codice{font-size:22px;letter-spacing:.3em;font-variant-numeric:tabular-nums}
+.avviso{font-size:13.5px;color:var(--ink-2);min-height:20px}
+.avviso.errore{color:var(--neg)}
+@media(max-width:500px){.scheda-accesso{padding:24px 18px}}
+
+/* ---------- testata dell'applicazione ---------- */
+.testata{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.testata h1{font-size:clamp(26px,3.4vw,36px);margin-top:8px}
+.testata-azioni{display:flex;align-items:center;gap:12px}
+.aggiornato{font-size:12.5px;color:var(--ink-3)}
+
+/* ---------- schede Telefonate / Email ---------- */
+.schede{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.schede button{
+  background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;padding:10px 14px;cursor:pointer;
+  font-weight:500;color:var(--ink-2);display:flex;align-items:center;gap:8px;
+}
+.schede button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:700}
+.conta{font-size:11.5px;font-weight:700;background:var(--surface-3);color:var(--ink-2);padding:1px 7px;border-radius:999px}
+.schede button[aria-selected="true"] .conta{background:var(--accent-soft);color:var(--accent-ink)}
+
+/* ---------- filtri ---------- */
+.filtri{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.stati{display:flex;gap:6px;flex-wrap:wrap}
+.stati button{
+  border:1px solid var(--line-strong);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer;color:var(--ink-2);
+}
+.stati button .num{color:var(--ink-3);margin-left:2px}
+.stati button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--ground)}
+.stati button[aria-pressed="true"] .num{color:inherit;opacity:.7}
+.cerca{
+  display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--line-strong);
+  background:var(--surface);min-width:min(320px,100%);flex:0 1 320px;color:var(--ink-3);
+}
+.cerca svg{width:16px;height:16px;flex:none}
+.cerca input{border:0;background:none;outline:none;flex:1;min-width:0;height:100%}
+@media(max-width:700px){.cerca{flex:1 1 100%}}
+
+/* ---------- elenco ---------- */
+.elenco{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow)}
+.voce + .voce{border-top:1px solid var(--line)}
+.riga{
+  display:grid;grid-template-columns:118px minmax(160px,1.6fr) minmax(110px,1fr) minmax(90px,.8fr) 90px 140px;
+  gap:14px;align-items:center;width:100%;padding:14px 18px;text-align:left;background:none;border:0;cursor:pointer;
+}
+.riga:hover{background:var(--surface-2)}
+.voce.aperta > .riga{background:var(--surface-2)}
+.riga.intestazione{cursor:default;padding-top:10px;padding-bottom:10px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);border-bottom:1px solid var(--line)}
+.riga.intestazione:hover{background:none}
+.riga small{display:block;color:var(--ink-3);font-size:12.5px;font-weight:400}
+.quando b{font-weight:500;font-size:13.5px}
+.chi-col{font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.fattura,.importo{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.riga-email{grid-template-columns:118px minmax(160px,1fr) minmax(200px,2fr) 110px}
+.oggetto{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vuoto{padding:40px 24px;text-align:center;color:var(--ink-3)}
+
+@media(max-width:860px){
+  .riga.intestazione{display:none}
+  .riga{grid-template-columns:1fr auto;gap:4px 12px;padding:14px 16px}
+  .riga > :nth-child(1){grid-column:1;grid-row:1}
+  .riga > :nth-child(2){grid-column:1;grid-row:2}
+  .riga > :nth-child(3){grid-column:1;grid-row:3;font-size:13px;color:var(--ink-2)}
+  .riga > :nth-child(3)::before{content:attr(data-etichetta) ": ";color:var(--ink-3)}
+  .riga > :nth-child(4){grid-column:2;grid-row:3;justify-self:end;font-weight:500}
+  .riga > :nth-child(5){grid-column:2;grid-row:2;justify-self:end}
+  .riga > :nth-child(6){grid-column:2;grid-row:1;justify-self:end}
+  .quando b,.quando small{display:inline;margin-right:6px}
+  .riga-email > :nth-child(3){grid-column:1 / -1;grid-row:3;font-size:14px;color:var(--ink)}
+  .riga-email > :nth-child(3)::before{content:none}
+  .riga-email > :nth-child(4){grid-column:2;grid-row:1}
+}
+
+/* ---------- dettaglio ---------- */
+.dettaglio{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;padding:6px 18px 22px;background:var(--surface-2)}
+.dettaglio h3{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+.testo{white-space:pre-wrap;line-height:1.6;margin-bottom:16px}
+.dati{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:0;font-size:14px}
+.dati dt{color:var(--ink-3)}
+.dati dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.modifica{display:flex;flex-direction:column;gap:10px}
+.scelte{border:0;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.scelta{position:relative;cursor:pointer}
+.scelta input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.scelta span{display:block;text-align:center;padding:10px;border-radius:10px;border:1px solid var(--line-strong);background:var(--surface);font-size:14px;font-weight:500}
+.scelta input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
+.scelta.amber input:checked + span{background:var(--amber-soft);border-color:var(--amber);color:var(--amber);font-weight:700}
+.scelta.info  input:checked + span{background:var(--info-soft);border-color:var(--info);color:var(--info);font-weight:700}
+.scelta.pos   input:checked + span{background:var(--pos-soft);border-color:var(--pos);color:var(--pos);font-weight:700}
+.scelta.neg   input:checked + span{background:var(--neg-soft);border-color:var(--neg);color:var(--neg);font-weight:700}
+.etichetta{font-size:13px;font-weight:500;color:var(--ink-2);margin-top:4px}
+.modifica textarea{resize:vertical;min-height:96px;padding:10px 12px;border-radius:10px;border:1px solid var(--line-strong);background:var(--surface);line-height:1.5}
+.salva{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.ultima{font-size:12.5px;color:var(--ink-3)}
+.dettaglio-email{grid-template-columns:1fr}
+.corpo{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font-family:inherit;font-size:14px;line-height:1.6;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;max-height:480px;overflow:auto}
+.allegati{margin:0;padding-left:18px;font-size:14px}
+.allegati small{color:var(--ink-3)}
+@media(max-width:860px){.dettaglio{grid-template-columns:1fr;gap:22px;padding:6px 16px 20px}}
+
+/* ---------- piede e avvisi ---------- */
+.piede{padding:36px 24px 28px;font-size:12.5px;color:var(--ink-3)}
+.toast{
+  position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:80;max-width:calc(100% - 32px);
+  background:var(--ink);color:var(--ground);padding:12px 18px;border-radius:12px;font-size:14px;box-shadow:var(--shadow);
+}
+.toast.errore{background:var(--neg);color:#fff}
+.toast.ok{background:var(--pos);color:#fff}
